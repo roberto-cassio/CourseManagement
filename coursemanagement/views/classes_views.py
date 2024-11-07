@@ -1,8 +1,8 @@
-from ..models.classes import Class
-from coursemanagement.serializers.classes_serializer import ClassSerializer
+from ..models.courses import Courses
+from coursemanagement.serializers.classes_serializer import CoursesSerializer
 from rest_framework import viewsets
 
 
-class ClassViewSet(viewsets.ModelViewSet):
-    queryset = Class.objects.all()
-    serializer_class = ClassSerializer
+class CoursesViewSet(viewsets.ModelViewSet):
+    queryset = Courses.objects.all()
+    serializer_class = CoursesSerializer
