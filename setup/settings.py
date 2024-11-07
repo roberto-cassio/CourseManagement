@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'coursemanagement',
     'rest_framework',
     'markdown',
+    'pytest_django',
 ]
 
 MIDDLEWARE = [
