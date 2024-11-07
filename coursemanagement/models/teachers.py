@@ -1,7 +1,7 @@
 
 from django.db import models
 
-from coursemanagement.common.models import BaseModel
+from coursemanagement.models.base_model import BaseModel
 
 
 class Teacher (BaseModel):
