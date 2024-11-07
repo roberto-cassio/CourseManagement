@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from coursemanagement.views.teacher_views import TeacherViewSet
-from coursemanagement.views.student_views import StudentViewSet
+from coursemanagement.views.teachers_views import TeacherViewSet
+from coursemanagement.views.students_views import StudentViewSet
 from coursemanagement.views.courses_views import CoursesViewSet
 from coursemanagement.views.classes_views import ClassesViewSet
 

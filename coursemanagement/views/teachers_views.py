@@ -1,5 +1,5 @@
 from ..models.teachers import Teacher
-from coursemanagement.serializers.teacher_serializer import TeacherSerializer
+from coursemanagement.serializers.teachers_serializer import TeacherSerializer
 from rest_framework import viewsets
 
 

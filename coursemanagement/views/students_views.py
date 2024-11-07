@@ -1,5 +1,5 @@
-from ..models.student import Student
-from coursemanagement.serializers.student_serializer import StudentSerializer
+from ..models.students import Student
+from coursemanagement.serializers.students_serializer import StudentSerializer
 from rest_framework import viewsets
 
 
