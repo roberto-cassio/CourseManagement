@@ -12,19 +12,17 @@ from coursemanagement.models.courses import Courses
 class StudentRegistrationViewSet(viewsets.ModelViewSet):
     queryset = StudentRegistration.objects.all()
     serializer_class = StudentRegistrationSerializer
-
+    '''Matrícula de Criação de Matrícula - Talvez fazer um Serializer somente para o método Get'''
 
     def create(self,request, *args, **kwargs):
         student_id = request.data.get('student')
         course_id = request.data.get('courses')
-        enrollment_date = request.data.get('enrollment_date')
-        cancellation_date = request.data.get("cancellation_date")
 
         try:
             student = Student.objects.get(id=student_id)
             course = Courses.objects.get(id=course_id)
 
-            registration = enroll_student(student, course, enrollment_date, cancellation_date)
+            registration = enroll_student(student, course)
             return Response({"message": "Aluno matriculado com sucesso!"}, status=status.HTTP_201_CREATED)
         except Student.DoesNotExist:
             return Response({"error": "Aluno não encontrado"}, status=status.HTTP_404_NOT_FOUND)
