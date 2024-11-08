@@ -51,7 +51,7 @@ def test_enroll_student_with_past_cancellation_date():
     student = Student.objects.create(name="Estudante Teste", email="teste@exemplo.com")
     teacher = Teacher.objects.create(name="Professor Teste", email="testeprofessor@exemplo.com")
     course = Courses.objects.create(title="Curso Teste", workload=40, teacher=teacher)
-    enrollment_date = timezone.now()
+    enrollment_date = timezone.now() - timezone.timedelta(days=2)
     cancellation_date = timezone.now() - timezone.timedelta(days=1)  # Data passada
 
     registration = enroll_student(student, course, enrollment_date, cancellation_date)
