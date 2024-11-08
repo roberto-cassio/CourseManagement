@@ -29,15 +29,16 @@ def enroll_student(student, course, enrollment_date, cancellation_date):
     registration.save()
     return registration
 
-def cancel_registration (student_name, course_title):
+def cancel_registration (student_id, course_id):
     try:
         registration = StudentRegistration.objects.get(   
-            student__name=student_name,
-            courses__title=course_title
+            student__id=student_id,
+            courses__id=course_id
             )
-
-        if registration.is_active is False:
-            raise ValidationError ("Matrícula não está ativa")
+        print (registration.student, registration.courses, registration.is_active)
+        if registration.cancellation_date:
+            if registration.enrollment_date > registration.cancellation_date:
+                raise ValidationError ("Matrícula não está ativa")
         
         if registration.cancellation_date is None:
             registration.cancellation_date = timezone.now()

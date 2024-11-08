@@ -1,6 +1,6 @@
 from ..models.students_registration import StudentRegistration
 from coursemanagement.serializers.students_registration_serializer import StudentRegistrationSerializer
-from coursemanagement.serializers.studenter_unregister_serializer import StudentUnregisterSerializer
+from coursemanagement.serializers.studentes_unregister_serializer import StudentUnregisterSerializer
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -41,14 +41,15 @@ class StudentRegistrationViewSet(viewsets.ModelViewSet):
         if not serializer.is_valid():
             return Response({"error": "Dados inválidos", "details": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
             
-        student_name = request.data.get('student_name')
-        course_title = request.data.get('course_title')
+        student_id = request.data.get('student')
+        course_id = request.data.get('courses')
+
         
         try:
-            canceled_registration = cancel_registration(student_name, course_title)
+            canceled_registration = cancel_registration(student_id, course_id)
             return Response({"message": "Matrícula cancelada com Sucesso!"}, status=status.HTTP_201_CREATED)
         except Exception as e:
-            return Response({"error": "Erro inesperado"}, status= status.HTTP_500_INTERNAL_SERVER_ERROR)
+            return Response({"error": "Erro inesperado", "details": str(e)}, status= status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 
