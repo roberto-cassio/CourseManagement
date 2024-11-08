@@ -5,17 +5,26 @@ from coursemanagement.models.students import Student
 from coursemanagement.models.courses import Courses
 from coursemanagement.models.teachers import Teacher
 from coursemanagement.services.enrollment_service import enroll_student, cancel_registration
+'''Funções de Auxilio'''
+def create_student(name="Estudante Teste", email="teste@exemplo.com"):
+    return Student.objects.create(name=name, email=email)
 
+def create_teacher(name="Professor Teste", email="testeprofessor@exemplo.com"):
+    return Teacher.objects.create(name=name, email=email)
+                               
+def create_course(title="Curso Teste", workload = 40, teacher = None):
+    if not teacher:
+        teacher = create_teacher()
+    return Courses.objects.create(title = title, workload= workload, teacher=teacher)
 
 '''
 TestCase para verificar se Alunos com Matrícula ativa retornam Flag Correta
 '''
 @pytest.mark.django_db
 def test_enroll_student_successful_registration():
-    student = Student.objects.create(name="Estudante Teste", email="teste@exemplo.com")
-    teacher = Teacher.objects.create(name="Professor Teste", email="testeprofessor@exemplo.com")
-    course = Courses.objects.create(title="Curso Teste", workload=40, teacher=teacher)
-
+    student = create_student()
+    course = create_course()
+ 
     start_time = time.time()
     registration = enroll_student(student, course)
     duration_ms = (time.time() - start_time) * 1000
@@ -33,9 +42,8 @@ TestCase para verificar o retorno se Aluno já está matrícula no Curso
 '''
 @pytest.mark.django_db
 def test_enroll_student_already_enrolled():
-    student = Student.objects.create(name="Estudante Teste", email="teste@exemplo.com")
-    teacher = Teacher.objects.create(name="Professor Teste", email="testeprofessor@exemplo.com")
-    course = Courses.objects.create(title="Curso Teste", workload=40, teacher=teacher)
+    student = create_student()
+    course = create_course()
 
     enroll_student(student, course)
     
@@ -50,9 +58,8 @@ TestCase para verificar se Alunos com Matrícula Cancelada retornam Flag Correta
 
 @pytest.mark.django_db
 def test_cancel_registration():
-    student = Student.objects.create(name="Estudante Teste", email="teste@exemplo.com")
-    teacher = Teacher.objects.create(name="Professor Teste", email="testeprofessor@exemplo.com")
-    course = Courses.objects.create(title="Curso Teste", workload=40, teacher=teacher)
+    student = create_student()
+    course = create_course()
 
     registration = enroll_student(student, course)
    
@@ -70,9 +77,8 @@ TestCase para verificiar se o cancelamento de uma matrícula já Inativa retorna
 
 @pytest.mark.django_db
 def test_cancel_registration_inactive():
-    student = Student.objects.create(name="Estudante Teste", email="teste@exemplo.com")
-    teacher = Teacher.objects.create(name="Professor Teste", email="testeprofessor@exemplo.com")
-    course = Courses.objects.create(title="Curso Teste", workload=40, teacher=teacher)
+    student = create_student()
+    course = create_course()
 
     registration = enroll_student(student, course)
     cancel_registration(registration.student.id, registration.courses.id)
@@ -90,9 +96,8 @@ def test_cancel_registration_inactive():
 
 @pytest.mark.django_db
 def test_cancel_registration_not_found():
-    student = Student.objects.create(name="Estudante Teste", email="teste@exemplo.com")
-    teacher = Teacher.objects.create(name="Professor Teste", email="testeprofessor@exemplo.com")
-    course = Courses.objects.create(title="Curso Teste", workload=40, teacher=teacher)
+    student = create_student()
+    course = create_course()
     
     start_time = time.time()
     with pytest.raises(ValidationError, match="Matrícula não Encontrada"):
