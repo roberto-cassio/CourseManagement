@@ -1,6 +1,7 @@
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 
 
 from ..models.students_registration import StudentRegistration
@@ -12,6 +13,7 @@ from coursemanagement.models.courses import Courses
 
 
 class StudentRegistrationViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
     queryset = StudentRegistration.objects.all()
     serializer_class = StudentRegistrationSerializer
    
