@@ -13,10 +13,17 @@ class StudentRegistrationViewSet(viewsets.ModelViewSet):
     queryset = StudentRegistration.objects.all()
     serializer_class = StudentRegistrationSerializer
    
-    '''O Get só vai buscar alunos com a Matrícula efetivamente ativa'''
-    def get_queryset(self):
-        return StudentRegistration.objects.filter(is_active=True)
 
+
+    '''O Get só vai buscar alunos com a Matrícula efetivamente ativa ou inativa de acordo com o parâmetro de consulta "status"'''
+    def get_queryset(self):
+        status_filter = self.request.query_params.get('status', 'active')
+        if status_filter == 'active':
+            return StudentRegistration.objects.filter(is_active=True)
+        if status_filter == 'inactive':
+            return StudentRegistration.objects.filter(is_active=False)
+        else:
+            return StudentRegistration.objects.all()
 
     '''Matrícula de Criação de Matrícula - Talvez fazer um Serializer somente para o método Get'''
 
