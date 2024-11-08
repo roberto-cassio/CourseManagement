@@ -64,6 +64,8 @@ class StudentRegistrationViewSet(viewsets.ModelViewSet):
         
     '''
     Método Listagem dos Alunos ativos matrículados em Determinado Curso
+    Disclaimer: Normalmente eu deixaria essa lógica em Courses pois creio que faz mais sentido, e não aqui. 
+    Mas como nos requisitos essa lógica estava especificado no ponto 4. Matrícula de Aluno, decidi deixar aqui para ficar conforme o escopo.
     '''
     @action(detail=True, methods=['get'], url_path='students-by-course', serializer_class=StudentRegistrationSerializer)
     def students_by_course(self, request, pk=None):
