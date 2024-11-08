@@ -4,4 +4,4 @@ from coursemanagement.models.teachers import Teacher
 class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = Teacher
-        fields = ['name', 'email']
+        fields = ['id', 'name', 'email']

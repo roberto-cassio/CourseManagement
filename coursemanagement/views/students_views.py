@@ -1,6 +1,8 @@
 from ..models.students import Student
-from coursemanagement.serializers.students_serializer import StudentSerializer
 from rest_framework import viewsets
+
+
+from coursemanagement.serializers.students_serializer import StudentSerializer
 
 
 class StudentViewSet(viewsets.ModelViewSet):

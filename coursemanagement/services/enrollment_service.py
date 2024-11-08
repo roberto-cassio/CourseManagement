@@ -1,7 +1,8 @@
 from django.forms import ValidationError
-from coursemanagement.models.students_registration import StudentRegistration
 from django.utils import timezone
-from datetime import datetime
+
+from coursemanagement.models.students_registration import StudentRegistration
+
 
 
 def enroll_student(student, course):

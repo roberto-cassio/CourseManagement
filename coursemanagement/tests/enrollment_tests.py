@@ -1,10 +1,12 @@
 import pytest
 import time
 from django.forms import ValidationError
+
 from coursemanagement.models.students import Student
 from coursemanagement.models.courses import Courses
 from coursemanagement.models.teachers import Teacher
 from coursemanagement.services.enrollment_service import enroll_student, cancel_registration
+
 '''Funções de Auxilio'''
 def create_student(name="Estudante Teste", email="teste@exemplo.com"):
     return Student.objects.create(name=name, email=email)
