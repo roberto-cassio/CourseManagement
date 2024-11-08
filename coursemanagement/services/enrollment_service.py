@@ -6,7 +6,7 @@ from datetime import datetime
 
 def enroll_student(student, course):
     '''Aqui fica a lógica de Matrícula do Aluno em um Curso + Validações'''
-    if StudentRegistration.objects.filter(student=student, courses=course).exists():
+    if StudentRegistration.objects.filter(student=student, courses=course, is_active=True).exists():
         raise ValidationError("O Aluno já está Matriculado nesse Curso.")
     is_active = True
     enrollment_date = timezone.now()

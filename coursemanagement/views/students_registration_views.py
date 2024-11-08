@@ -63,9 +63,16 @@ class StudentRegistrationViewSet(viewsets.ModelViewSet):
             return Response({"error": "Erro inesperado", "details": str(e)}, status= status.HTTP_500_INTERNAL_SERVER_ERROR)
         
     '''
-    Método Listagem dos Alunos matrículados em Determinado Curso
+    Método Listagem dos Alunos ativos matrículados em Determinado Curso
     '''
-
+    @action(detail=True, methods=['get'], url_path='students-by-course', serializer_class=StudentRegistrationSerializer)
+    def students_by_course(self, request, pk=None):
+        try:
+            registrations = StudentRegistration.objects.filter(courses__id=pk, is_active=True)
+            serializer = StudentRegistrationSerializer(registrations, many=True)
+        except StudentRegistration.DoesNotExist:
+            return Response({"error": "Nenhuma matrícula encontrada para este curso."}, status=status.HTTP_404_NOT_FOUND)
+        return Response(serializer.data)
 
 
 
