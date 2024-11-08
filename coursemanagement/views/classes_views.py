@@ -6,3 +6,5 @@ from rest_framework import viewsets
 class ClassesViewSet(viewsets.ModelViewSet):
     queryset = Classes.objects.all()
     serializer_class = ClassesSerializer
+
+
