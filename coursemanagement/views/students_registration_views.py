@@ -1,5 +1,6 @@
 from ..models.students_registration import StudentRegistration
 from coursemanagement.serializers.students_registration_serializer import StudentRegistrationSerializer
+from coursemanagement.serializers.studenter_unregister_serializer import StudentUnregisterSerializer
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -30,13 +31,18 @@ class StudentRegistrationViewSet(viewsets.ModelViewSet):
         except Courses.DoesNotExist:
             return Response({"error": "Curso não encontrado"}, status=status.HTTP_404_NOT_FOUND)
     
-    @action(detail=True, methods=['post'])
-    def cancel(self, request, id=None):
+    '''
+    Método para Cancelamento de Matrícula
+    '''
+    @action(detail=False, methods=['post'], serializer_class=StudentUnregisterSerializer)
+    def cancel(self, request):
+        serializer = StudentUnregisterSerializer(data=request.data)
+
+        if not serializer.is_valid():
+            return Response({"error": "Dados inválidos", "details": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+            
         student_name = request.data.get('student_name')
         course_title = request.data.get('course_title')
-
-        if not student_name or not course_title:
-            return Response({"error": "Nome do Aluno e do Curso são obrigatórios."})
         
         try:
             canceled_registration = cancel_registration(student_name, course_title)
