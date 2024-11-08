@@ -12,9 +12,15 @@ from coursemanagement.models.courses import Courses
 class StudentRegistrationViewSet(viewsets.ModelViewSet):
     queryset = StudentRegistration.objects.all()
     serializer_class = StudentRegistrationSerializer
+   
+    '''O Get só vai buscar alunos com a Matrícula efetivamente ativa'''
+    def get_queryset(self):
+        return StudentRegistration.objects.filter(is_active=True)
+
+
     '''Matrícula de Criação de Matrícula - Talvez fazer um Serializer somente para o método Get'''
 
-    def create(self,request, *args, **kwargs):
+    def create(self,request):
         student_id = request.data.get('student')
         course_id = request.data.get('courses')
 
@@ -48,6 +54,11 @@ class StudentRegistrationViewSet(viewsets.ModelViewSet):
             return Response({"message": "Matrícula cancelada com Sucesso!"}, status=status.HTTP_201_CREATED)
         except Exception as e:
             return Response({"error": "Erro inesperado", "details": str(e)}, status= status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+    '''
+    Método Listagem dos Alunos matrículados em Determinado Curso
+    '''
+
 
 
 
