@@ -1,6 +1,5 @@
 
 from django.db import models
-from django.forms import ValidationError
 
 from coursemanagement.models.courses import Courses
 from coursemanagement.models.students import Student
