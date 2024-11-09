@@ -37,11 +37,27 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #my app
     'coursemanagement',
+    #3rd apps
     'rest_framework',
     'markdown',
     'pytest_django',
+    'drf_yasg',
 ]
+#Configurações Swagger
+SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': False,
+   'SECURITY_DEFINITIONS': {
+      'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+      }
+
+   }
+}
+
 
 #Configuração do JWT
 
