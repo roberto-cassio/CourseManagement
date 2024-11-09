@@ -1,3 +1,4 @@
+from django.forms import ValidationError
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -6,7 +7,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from ..models.students_registration import StudentRegistration
 from coursemanagement.serializers.students_registration_serializer import StudentRegistrationSerializer
-from coursemanagement.serializers.studentes_unregister_serializer import StudentUnregisterSerializer
+from coursemanagement.serializers.students_unregister_serializer import StudentUnregisterSerializer
 from coursemanagement.services.enrollment_service import enroll_student, cancel_registration
 from coursemanagement.models.students import Student
 from coursemanagement.models.courses import Courses
@@ -63,6 +64,8 @@ class StudentRegistrationViewSet(viewsets.ModelViewSet):
         try:
             canceled_registration = cancel_registration(student_id, course_id)
             return Response({"message": "Matrícula cancelada com Sucesso!"}, status=status.HTTP_204_NO_CONTENT)
+        except ValidationError as e:
+            return Response({"error": "Erro na solicitação", "detals": str(e)}, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
             return Response({"error": "Erro inesperado", "details": str(e)}, status= status.HTTP_500_INTERNAL_SERVER_ERROR)
         

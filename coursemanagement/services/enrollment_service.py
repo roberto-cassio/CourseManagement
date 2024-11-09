@@ -17,12 +17,13 @@ def enroll_student(student, course):
     return registration
 
 def cancel_registration (student_id, course_id):
+    if not student_id or not course_id:
+        raise ValidationError("ID do Aluno e ID do Curso são obrigatórios!")
     try:
         registration = StudentRegistration.objects.get(   
             student__id=student_id,
             courses__id=course_id
             )
-        print (registration.student, registration.courses, registration.is_active)
         
         if not registration.is_active:
             raise ValidationError ("Matrícula não está ativa")
