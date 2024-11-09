@@ -12,7 +12,7 @@ from coursemanagement.services.enrollment_service import enroll_student, cancel_
 from coursemanagement.models.students import Student
 from coursemanagement.models.courses import Courses
 
-
+'''Como o Registration não tem o SoftDelete, somente data de matrícula e cancelamento(Que faz essencialmente a mesma coisa), o SoftDeleteModelViewSet não é chamado aqui'''
 class StudentRegistrationViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = StudentRegistration.objects.all()
