@@ -15,6 +15,7 @@ from coursemanagement.views.students_views import StudentViewSet
 from coursemanagement.views.courses_views import CoursesViewSet
 from coursemanagement.views.classes_views import ClassesViewSet
 from coursemanagement.views.students_registration_views import StudentRegistrationViewSet
+from coursemanagement.views.token_view import CustomTokenObtainPairView
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -36,7 +37,7 @@ router.register('classes', ClassesViewSet, basename="Classes")
 router.register("registration", StudentRegistrationViewSet, basename="Student_Registration" )
 
 urlpatterns = [
-    path('token/', TokenObtainPairView.as_view()),
+    path('token/', CustomTokenObtainPairView.as_view()),
     path('token/refresh/', TokenRefreshView.as_view()),
     path('admin/', admin.site.urls),
     path('', include(router.urls))
