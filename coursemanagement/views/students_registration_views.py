@@ -20,7 +20,7 @@ class StudentRegistrationViewSet(viewsets.ModelViewSet):
    
 
 
-    '''O Get só vai buscar alunos com a Matrícula efetivamente ativa ou inativa de acordo com o parâmetro de consulta "status"'''
+    '''O Get só vai buscar alunos com a Matrícula efetivamente active ou inactive de acordo com o parâmetro de consulta "status". O Default é active.'''
     def get_queryset(self):
         status_filter = self.request.query_params.get('status', 'active')
         if status_filter == 'active':
