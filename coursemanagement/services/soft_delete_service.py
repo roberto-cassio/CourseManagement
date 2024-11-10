@@ -53,9 +53,9 @@ def delete_course_and_associated_registrations(course):
 def delete_classes_from_course(course):
     '''Deleção das aulas associadas ao curso que está sendo deletado'''
     try:
-        classes = Classes.object.filter(courses=course, deleted_at__isnull=True)
+        classes = Classes.objects.filter(courses=course, deleted_at__isnull=True)
         for class_object in classes:
             class_object.deleted_at = timezone.now()
             class_object.save()
     except Exception as e:
-        raise DeletionError(detail=f"Erro ao deletar as aulas do course {course.id}: {e}")
+        raise DeletionError(detail=f"Erro ao deletar as aulas do curso Id: {course.id}: {e}")
