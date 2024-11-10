@@ -1,4 +1,3 @@
-from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
 from coursemanagement.views.base_model_view_set import SoftDeleteModelViewSet
@@ -10,5 +9,6 @@ class ClassesViewSet(SoftDeleteModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = Classes.objects.all()
     serializer_class = ClassesSerializer
+
 
 
