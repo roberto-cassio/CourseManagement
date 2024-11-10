@@ -33,3 +33,4 @@ class CoursesViewSet(SoftDeleteModelViewSet):
         if teacher and is_deleted(teacher):
             return Response(
                 {"detail": "Não é possível criar uma aula para um professor deletado."}, status=status.HTTP_400_BAD_REQUEST)
+        

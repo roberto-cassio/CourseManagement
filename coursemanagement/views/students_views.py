@@ -1,6 +1,5 @@
 from coursemanagement.views.base_model_view_set import SoftDeleteModelViewSet
 from ..models.students import Student
-from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
 
