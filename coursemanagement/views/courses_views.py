@@ -5,10 +5,13 @@ from coursemanagement.views.base_model_view_set import SoftDeleteModelViewSet
 from coursemanagement.serializers.courses_serializer import CoursesSerializer
 from ..models.courses import Courses
 
+
 from rest_framework.permissions import IsAuthenticated
-from django.utils import timezone
 from rest_framework.response import Response
 from rest_framework import status
+
+from django.utils import timezone
+from django.db import transaction
 
 class CoursesViewSet(SoftDeleteModelViewSet):
     permission_classes = (IsAuthenticated,)
@@ -19,9 +22,11 @@ class CoursesViewSet(SoftDeleteModelViewSet):
         '''Sobrescrever o método destroy do SoftDeleteModelView set para garantir que as matrículas associadas sejam desativadas'''
         course = self.get_object()
 
-        response = super().destroy(request, *args, **kwargs)
+        '''Aqui é o fim da Cascata, nesse sentido, o update diretamente no is_active, e no cancellation date faz mais sentido'''
+        with transaction.atomic():
+            response = super().destroy(request, *args, **kwargs)
 
-        StudentRegistration.objects.filter(courses=course, is_active = True).update(is_active=False, cancellation_date=timezone.now())
+            StudentRegistration.objects.filter(courses=course, is_active = True).update(is_active=False, cancellation_date=timezone.now())
 
         return response
     
@@ -34,3 +39,7 @@ class CoursesViewSet(SoftDeleteModelViewSet):
             return Response(
                 {"detail": "Não é possível criar uma aula para um professor deletado."}, status=status.HTTP_400_BAD_REQUEST)
         
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            course = serializer.save()
+            return Response(self.get_serializer(course).data, status=status.HTTP_201_CREATED)
