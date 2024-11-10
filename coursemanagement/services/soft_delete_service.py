@@ -17,8 +17,6 @@ class DeletionError(APIException):
 def is_deleted(obj):
     return obj.deleted_at is not None
 
-# services/deletion_service.py
-
 
 '''
 Inicialmente eu estava dando um update com o deleted_at, mas em uma perspectiva de escalabilidade percebi que isso não era muito prático.

@@ -1,6 +1,6 @@
 from coursemanagement.models.students_registration import StudentRegistration
 from coursemanagement.models.teachers import Teacher
-from coursemanagement.services.soft_delete_service import is_deleted
+from coursemanagement.services.soft_delete_service import is_deleted, delete_course_and_associated_registrations
 from coursemanagement.views.base_model_view_set import SoftDeleteModelViewSet
 from coursemanagement.serializers.courses_serializer import CoursesSerializer
 from ..models.courses import Courses
@@ -10,7 +10,6 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 
-from django.utils import timezone
 from django.db import transaction
 
 class CoursesViewSet(SoftDeleteModelViewSet):
@@ -22,12 +21,13 @@ class CoursesViewSet(SoftDeleteModelViewSet):
         '''Sobrescrever o método destroy do SoftDeleteModelView set para garantir que as matrículas associadas sejam desativadas'''
         course = self.get_object()
 
-        '''Aqui é o fim da Cascata, nesse sentido, o update diretamente no is_active, e no cancellation date faz mais sentido'''
         with transaction.atomic():
+            #Função responsável por deleção do curso e matrículas associadas
+            delete_course_and_associated_registrations(course)
+
             response = super().destroy(request, *args, **kwargs)
 
-            StudentRegistration.objects.filter(courses=course, is_active = True).update(is_active=False, cancellation_date=timezone.now())
-
+            
         return response
     
     def create (self, request):
