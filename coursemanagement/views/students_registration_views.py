@@ -83,20 +83,4 @@ class StudentRegistrationViewSet(viewsets.ModelViewSet):
             return Response({"error": "Nenhuma matrícula encontrada para este curso."}, status=status.HTTP_404_NOT_FOUND)
         return Response(serializer.data)
     
-    '''
-    Esse métodos foram removidos por não fazerem sentido com o funcionamento da matrícula, a mesma é somente, cancelada, visualizada, ou criada
-    '''
-    def destroy(self,request, *args, **kwargs):
-        return Response({
-            "detail":"O método DELETE não é permitido nessa view."}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
-    
-    def update(self,request, *args, **kwargs):
-        return Response({
-            "detail":"O método UPDATE não é permitido nessa view."}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
-    
-    def partial_update(self,request, *args, **kwargs):
-        return Response({
-            "detail":"O método PATCH não é permitido nessa view."}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
-    
-
 
