@@ -50,7 +50,7 @@ class StudentRegistrationViewSet(viewsets.ModelViewSet):
     '''
     Método para Cancelamento de Matrícula
     '''
-    @action(detail=False, methods=['post'], serializer_class=StudentUnregisterSerializer)
+    @action(detail=False, methods=['delete'], serializer_class=StudentUnregisterSerializer)
     def cancel(self, request):
         serializer = StudentUnregisterSerializer(data=request.data)
 

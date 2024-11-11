@@ -2,7 +2,6 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from rest_framework.response import Response
 
-
 from coursemanagement.models.courses import Courses
 from coursemanagement.services.soft_delete_service import is_deleted
 from coursemanagement.views.base_model_view_set import SoftDeleteModelViewSet
