@@ -22,7 +22,8 @@ def cancel_registration (student_id, course_id):
     try:
         registration = StudentRegistration.objects.get(   
             student__id=student_id,
-            courses__id=course_id
+            courses__id=course_id,
+            cancellation_date__isnull=True
             )
         
         if not registration.is_active:
