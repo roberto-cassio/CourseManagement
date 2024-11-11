@@ -17,7 +17,7 @@ class StudentRegistrationViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = StudentRegistration.objects.all()
     serializer_class = StudentRegistrationSerializer
-    http_method_names= ['get ', 'post']
+    http_method_names= ['get', 'post']
 
     '''O Get só vai buscar alunos com a Matrícula efetivamente active ou inactive de acordo com o parâmetro de consulta "status". O Default é active.'''
     def get_queryset(self):
@@ -52,6 +52,7 @@ class StudentRegistrationViewSet(viewsets.ModelViewSet):
     '''
     @action(detail=False, methods=['post'], serializer_class=StudentUnregisterSerializer)
     def cancel(self, request):
+        '''Método para cancelar uma matrícula de um estudante em um curso específico. A matrícula será marcada como inativa e a data de cancelamento será registrada.'''
         serializer = StudentUnregisterSerializer(data=request.data)
 
         if not serializer.is_valid():
@@ -74,8 +75,9 @@ class StudentRegistrationViewSet(viewsets.ModelViewSet):
     Disclaimer: Normalmente eu deixaria essa lógica em Courses pois creio que faz mais sentido, e não aqui. 
     Mas como nos requisitos essa lógica estava especificado no ponto 4. Matrícula de Aluno, decidi deixar aqui para ficar conforme o escopo.
     '''
-    @action(detail=True, methods=['get'], url_path='students-by-course', serializer_class=StudentRegistrationSerializer)
+    @action(detail=True, methods=['get'], url_path='students', serializer_class=StudentRegistrationSerializer)
     def students_by_course(self, request, pk=None):
+        '''Retorna a lista de estudantes matriculados em um curso específico.'''
         try:
             registrations = StudentRegistration.objects.filter(courses__id=pk, is_active=True)
             serializer = StudentRegistrationSerializer(registrations, many=True)
