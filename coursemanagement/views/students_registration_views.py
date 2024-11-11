@@ -17,8 +17,7 @@ class StudentRegistrationViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = StudentRegistration.objects.all()
     serializer_class = StudentRegistrationSerializer
-   
-
+    http_method_names= ['get ', 'post']
 
     '''O Get só vai buscar alunos com a Matrícula efetivamente active ou inactive de acordo com o parâmetro de consulta "status". O Default é active.'''
     def get_queryset(self):
@@ -29,6 +28,7 @@ class StudentRegistrationViewSet(viewsets.ModelViewSet):
             return StudentRegistration.objects.filter(is_active=False)
         else:
             return StudentRegistration.objects.all()
+
 
     '''Matrícula de Criação de Matrícula - Talvez fazer um Serializer somente para o método Get'''
 
@@ -50,7 +50,7 @@ class StudentRegistrationViewSet(viewsets.ModelViewSet):
     '''
     Método para Cancelamento de Matrícula
     '''
-    @action(detail=False, methods=['delete'], serializer_class=StudentUnregisterSerializer)
+    @action(detail=False, methods=['post'], serializer_class=StudentUnregisterSerializer)
     def cancel(self, request):
         serializer = StudentUnregisterSerializer(data=request.data)
 
@@ -82,6 +82,21 @@ class StudentRegistrationViewSet(viewsets.ModelViewSet):
         except StudentRegistration.DoesNotExist:
             return Response({"error": "Nenhuma matrícula encontrada para este curso."}, status=status.HTTP_404_NOT_FOUND)
         return Response(serializer.data)
-
+    
+    '''
+    Esse métodos foram removidos por não fazerem sentido com o funcionamento da matrícula, a mesma é somente, cancelada, visualizada, ou criada
+    '''
+    def destroy(self,request, *args, **kwargs):
+        return Response({
+            "detail":"O método DELETE não é permitido nessa view."}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+    
+    def update(self,request, *args, **kwargs):
+        return Response({
+            "detail":"O método UPDATE não é permitido nessa view."}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+    
+    def partial_update(self,request, *args, **kwargs):
+        return Response({
+            "detail":"O método PATCH não é permitido nessa view."}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+    
 
 
