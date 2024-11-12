@@ -7,7 +7,6 @@ mais intuitiva. Mas considerando que a ideia do projeto é levar em conta també
 Portanto, optei por usar apenas o ID's dos Estudantes e Cursos nas respostas.
 '''
 class StudentRegistrationSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = StudentRegistration
         fields = ['id', 'student', 'courses']

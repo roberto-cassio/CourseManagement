@@ -5,4 +5,4 @@ class StudentUnregisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = StudentRegistration
-        fields = ['student', 'courses', 'cancellation_date']
+        fields = ['student', 'courses']
