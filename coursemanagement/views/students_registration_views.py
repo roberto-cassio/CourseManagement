@@ -31,9 +31,6 @@ class StudentRegistrationViewSet(viewsets.ModelViewSet):
         else:
             return StudentRegistration.objects.all()
 
-
-    '''Matrícula de Criação de Matrícula - Talvez fazer um Serializer somente para o método Get'''
-
     def create(self,request):
         student_id = request.data.get('student')
         course_id = request.data.get('courses')
