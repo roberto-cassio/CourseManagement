@@ -4,6 +4,8 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
 
 from ..models.students_registration import StudentRegistration
 from coursemanagement.serializers.students_registration_serializer import StudentRegistrationSerializer
@@ -75,6 +77,14 @@ class StudentRegistrationViewSet(viewsets.ModelViewSet):
     Disclaimer: Normalmente eu deixaria essa lógica em Courses pois creio que faz mais sentido, e não aqui. 
     Mas como nos requisitos essa lógica estava especificado no ponto 4. Matrícula de Aluno, decidi deixar aqui para ficar conforme o escopo.
     '''
+    @swagger_auto_schema(
+            manual_parameters=[
+            openapi.Parameter(
+                'id', openapi.IN_PATH, description='Identificador único do curso para buscar estudantes matriculados',
+                type=openapi.TYPE_INTEGER
+            )
+        ]
+    )
     @action(detail=True, methods=['get'], url_path='students', serializer_class=StudentRegistrationSerializer)
     def students_by_course(self, request, pk=None):
         '''Retorna a lista de estudantes matriculados em um curso específico.'''
