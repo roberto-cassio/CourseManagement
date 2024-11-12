@@ -4,7 +4,7 @@
 ## Pré Requisitos:
 - Python (>= 3.8)
 - Django (>= 3.2)
-- Banco de Dados: MSSQL
+- Banco de Dados: Microsoft SQL Server, pode ser instalado a partir desse [link](https://www.microsoft.com/en-us/sql-server/sql-server-downloads).
 - Driver ODBC para SQL Server (necessário para a conexão com o banco de dados MSSQL): <br>
 Windows:Pode ser instalado a partir do [link oficial da Microsoft](https://learn.microsoft.com/en-us/sql/connect/odbc/download-odbc-driver-for-sql-server?view=sql-server-ver16). <br>
 Linux: Instale o driver usando o seguinte comando (para distribuições baseadas em Debian, como Ubuntu):
