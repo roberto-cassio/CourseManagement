@@ -4,13 +4,21 @@
 ## Pré Requisitos:
 - Python (>= 3.8)
 - Django (>= 3.2)
-- Banco de Dados: MSSQL
-
+- Banco de Dados: Microsoft SQL Server, pode ser instalado a partir desse [link](https://www.microsoft.com/en-us/sql-server/sql-server-downloads).
+- Driver ODBC para SQL Server (necessário para a conexão com o banco de dados MSSQL): <br>
+Windows:Pode ser instalado a partir do [link oficial da Microsoft](https://learn.microsoft.com/en-us/sql/connect/odbc/download-odbc-driver-for-sql-server?view=sql-server-ver16). <br>
+Linux: Instale o driver usando o seguinte comando (para distribuições baseadas em Debian, como Ubuntu):
+```
+bash
+Copiar código
+sudo apt-get install msodbcsql17
+```
 ## Instalação:
 ### Clone o Repositório:
+```
 git clone https://github.com/roberto-cassio/CourseManagement
 cd CourseManagement
-
+```
 ### Crie e ative o Ambiente Virtual:
 ```
 -Linux:
@@ -29,15 +37,14 @@ pip install -r requirements.txt
 ### Configurar Variáveis de Ambiente: 
 Crie um arquivo .env baseado no exemplo abaixo para configuração do banco de dados e outras varíaveis importantes:
 ```
-SECRET_KEY='sua_chave_secreta'
-DEBUG=True
-DB_NAME='nome_do_banco'
-DB_USER='usuario_do_banco'
-DB_PASSWORD='senha_do_banco'
-DB_HOST='localhost'
+SECRET_KEY = 'sua_chave_secreta'
+NAME =  'nome_do_banco'
+USER= 'usuario_do_banco'
+PASSWORD= 'senha_do_banco'
+HOST='localhost'
 ```
 
-- Para obtenção de uma nova SECRET_KEY:
+- Para obtenção de uma nova SECRET_KEY:
 ```
 python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
 ```
@@ -55,7 +62,7 @@ python manage.py loaddata initial_data.json
 
 ## Configuração:
 Conforme instruído na seção de Instalação, a configuração necessária envolve o arquivo .env, com informações para configuração do banco de dados e chaves de autenticação.
-1- Para acesso aos end_points, é necessário possuir um Token JWT. Para tal será necessário:
+1. Para acesso aos end_points, é necessário possuir um Token JWT. Para tal será necessário: <br>
 Utilizar o comando createsuperuser para criar um usuário:
 ```
 python manage.py createsuperuser
