@@ -8,9 +8,10 @@
 
 ## Instalação:
 ### Clone o Repositório:
+```
 git clone https://github.com/roberto-cassio/CourseManagement
 cd CourseManagement
-
+```
 ### Crie e ative o Ambiente Virtual:
 ```
 -Linux:
