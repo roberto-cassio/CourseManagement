@@ -57,7 +57,7 @@ python manage.py migrate
 
 ### Caso deseje popular o banco de dados:
 ```
-python manage.py loaddata initial_data.json
+python manage.py loaddata coursemanagement/initial_data.json
 ```
 
 ## Configuração:
@@ -84,12 +84,12 @@ http://127.0.0.1:8000/token com o corpo da requisição no formato:
 }
 ```
 - Isso retornará um Token JWT necessário para demais requisições da API.
-3.1 - Acesso também pode ser realizado através do "Authorization no Swagger" - http://127.0.0.1:8000/swagger
+3.1 - Acesso também pode ser realizado através do endpoint "Autorização" no Swagger - http://127.0.0.1:8000/swagger
 
 ## Testes:
 A aplicação inclui Test Cases para suas principais funcionalidades, os mesmos pode ser executados em:
 ```
-pytest -s coursemanagement/tests/
+pytest coursemanagement/tests/
 ```
 ## Documentação:
 Toda a aplicação se encontra documentada através do Swagger, a mesma pode ser visualizada da seguinte forma:
