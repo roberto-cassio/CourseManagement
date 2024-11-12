@@ -68,8 +68,10 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated', 
     ]
-   # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-   # 'PAGE_SIZE':10,
+
+    #Idealmente eu também implementaria o Paginator para lidar com grandes volumes de dados de forma eficiente, entretanto por falta de tempo para implementação optei por deixa-lo de fora.
+    #'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    #'PAGE_SIZE':10,
 }
 
 MIDDLEWARE = [
