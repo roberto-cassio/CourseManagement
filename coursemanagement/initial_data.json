@@ -1,0 +1,173 @@
+[
+    {
+      "model": "coursemanagement.teacher",
+      "fields": {
+        "name": "Alice Santos",
+        "email": "alice.santos@example.com",
+        "created_at": "2024-11-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "coursemanagement.teacher",
+      "fields": {
+        "name": "Bruno Lima",
+        "email": "bruno.lima@example.com",
+        "created_at": "2024-11-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "coursemanagement.teacher",
+      "fields": {
+        "name": "Carla Souza",
+        "email": "carla.souza@example.com",
+        "created_at": "2024-11-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "coursemanagement.student",
+      "fields": {
+        "name": "Daniel Almeida",
+        "email": "daniel.almeida@example.com",
+        "created_at": "2024-11-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "coursemanagement.student",
+      "fields": {
+        "name": "Eva Pereira",
+        "email": "eva.pereira@example.com",
+        "created_at": "2024-11-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "coursemanagement.student",
+      "fields": {
+        "name": "Felipe Mendes",
+        "email": "felipe.mendes@example.com",
+        "created_at": "2024-11-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "coursemanagement.student",
+      "fields": {
+        "name": "Giovana Nunes",
+        "email": "giovana.nunes@example.com",
+        "created_at": "2024-11-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "coursemanagement.courses",
+      "fields": {
+        "title": "Introdução à Programação",
+        "description": "Curso básico de introdução à programação",
+        "workload": 40.0,
+        "teacher": 1,
+        "created_at": "2024-11-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "coursemanagement.courses",
+      "fields": {
+        "title": "Estruturas de Dados",
+        "description": "Curso intermediário de estruturas de dados",
+        "workload": 60.0,
+        "teacher": 2,
+        "created_at": "2024-11-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "coursemanagement.courses",
+      "fields": {
+        "title": "Desenvolvimento Web",
+        "description": "Curso avançado de desenvolvimento web",
+        "workload": 80.0,
+        "teacher": 3,
+        "created_at": "2024-11-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "coursemanagement.classes",
+      "fields": {
+        "name": "Aula 1 - Introdução",
+        "topic": "Apresentação do curso",
+        "date": "2024-12-01T08:00:00Z",
+        "duration": "01:00:00",
+        "courses": 1,
+        "created_at": "2024-11-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "coursemanagement.classes",
+      "fields": {
+        "name": "Aula 2 - Variáveis",
+        "topic": "Introdução a variáveis",
+        "date": "2024-12-02T08:00:00Z",
+        "duration": "02:00:00",
+        "courses": 1,
+        "created_at": "2024-11-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "coursemanagement.classes",
+      "fields": {
+        "name": "Aula 1 - Listas e Filas",
+        "topic": "Fundamentos de listas e filas",
+        "date": "2024-12-03T10:00:00Z",
+        "duration": "01:30:00",
+        "courses": 2,
+        "created_at": "2024-11-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "coursemanagement.classes",
+      "fields": {
+        "name": "Aula 1 - HTML e CSS",
+        "topic": "Introdução ao desenvolvimento web com HTML e CSS",
+        "date": "2024-12-04T09:00:00Z",
+        "duration": "01:30:00",
+        "courses": 3,
+        "created_at": "2024-11-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "coursemanagement.studentregistration",
+      "fields": {
+        "student": 1,
+        "courses": 1,
+        "enrollment_date": "2024-11-01T09:00:00Z",
+        "cancellation_date": null,
+        "is_active": true
+      }
+    },
+    {
+      "model": "coursemanagement.studentregistration",
+      "fields": {
+        "student": 2,
+        "courses": 2,
+        "enrollment_date": "2024-11-01T10:00:00Z",
+        "cancellation_date": null,
+        "is_active": true
+      }
+    },
+    {
+      "model": "coursemanagement.studentregistration",
+      "fields": {
+        "student": 3,
+        "courses": 3,
+        "enrollment_date": "2024-11-01T11:00:00Z",
+        "cancellation_date": null,
+        "is_active": true
+      }
+    },
+    {
+      "model": "coursemanagement.studentregistration",
+      "fields": {
+        "student": 4,
+        "courses": 1,
+        "enrollment_date": "2024-11-02T09:00:00Z",
+        "cancellation_date": null,
+        "is_active": true
+      }
+    }
+  ]
+  
