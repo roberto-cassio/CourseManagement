@@ -30,15 +30,14 @@ pip install -r requirements.txt
 ### Configurar Variáveis de Ambiente: 
 Crie um arquivo .env baseado no exemplo abaixo para configuração do banco de dados e outras varíaveis importantes:
 ```
-SECRET_KEY='sua_chave_secreta'
-DEBUG=True
-DB_NAME='nome_do_banco'
-DB_USER='usuario_do_banco'
-DB_PASSWORD='senha_do_banco'
-DB_HOST='localhost'
+SECRET_KEY = 'sua_chave_secreta'
+NAME =  'nome_do_banco'
+USER= 'usuario_do_banco'
+PASSWORD= 'senha_do_banco'
+HOST='localhost'
 ```
 
-- Para obtenção de uma nova SECRET_KEY:
+- Para obtenção de uma nova SECRET_KEY:
 ```
 python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
 ```
@@ -56,7 +55,7 @@ python manage.py loaddata initial_data.json
 
 ## Configuração:
 Conforme instruído na seção de Instalação, a configuração necessária envolve o arquivo .env, com informações para configuração do banco de dados e chaves de autenticação.
-1- Para acesso aos end_points, é necessário possuir um Token JWT. Para tal será necessário:
+1. Para acesso aos end_points, é necessário possuir um Token JWT. Para tal será necessário: <br>
 Utilizar o comando createsuperuser para criar um usuário:
 ```
 python manage.py createsuperuser
