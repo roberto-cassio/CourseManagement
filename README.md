@@ -26,6 +26,9 @@ python3 -m venv venv
 source venv/bin/activate
 -Windows:
 python -m venv venv
+
+```
+```
 venv\Scripts\activate
 ```
 
@@ -83,7 +86,14 @@ http://127.0.0.1:8000/token com o corpo da requisição no formato:
   "password": "sua_senha"
 }
 ```
-- Isso retornará um Token JWT necessário para demais requisições da API.
+- Isso retornará um Token JWT necessário para demais requisições da API na seguinte forma:
+ ```
+{
+  "refresh": "refresh_token",
+  "access": "acess_token"
+}
+ ```
+- O que você precisa aqui é o acess_token obtido. O mesmo deverá ser incluído como um Bearer no cabeçalho da Autenticação das próximas requisições. <br>
 3.1 - Acesso também pode ser realizado através do endpoint "Autorização" no Swagger - http://127.0.0.1:8000/swagger
 
 ## Testes:
