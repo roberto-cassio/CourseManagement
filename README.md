@@ -44,6 +44,7 @@ python -c 'from django.core.management.utils import get_random_secret_key; print
 - Basta preencher o campo correspondente com a chave obtida.
 ### Aplique as Migrações no seu banco:
 ```
+python manage.py makemigrations
 python manage.py migrate
 ```
 
