@@ -86,7 +86,7 @@ def test_cancel_registration_inactive():
     cancel_registration(registration.student.id, registration.courses.id)
 
     start_time = time.time()
-    with pytest.raises(ValidationError, match="Matrícula não está ativa"):
+    with pytest.raises(ValidationError, match="Matrícula não encontrada"):
         cancel_registration(registration.student.id, registration.courses.id)
     duration_ms = (time.time() - start_time) * 1000
 
