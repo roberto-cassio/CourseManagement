@@ -6,13 +6,23 @@
 - Django (>= 3.2)
 - Banco de Dados: Microsoft SQL Server, pode ser instalado a partir desse [link](https://www.microsoft.com/en-us/sql-server/sql-server-downloads).
 - Driver ODBC para SQL Server (necessário para a conexão com o banco de dados MSSQL): <br>
-Windows:Pode ser instalado a partir do [link oficial da Microsoft](https://learn.microsoft.com/en-us/sql/connect/odbc/download-odbc-driver-for-sql-server?view=sql-server-ver16). <br>
+Windows: Pode ser instalado a partir do [link oficial da Microsoft](https://learn.microsoft.com/en-us/sql/connect/odbc/download-odbc-driver-for-sql-server?view=sql-server-ver16). <br>
 Linux: Instale o driver usando o seguinte comando (para distribuições baseadas em Debian, como Ubuntu):
-```
-bash
-Copiar código
-sudo apt-get install msodbcsql17
-```
+
+## Funcionalidades:
+- **Gerenciamento de Cursos:** CRUD de cursos com informações detalhadas (título, descrição, carga horária, instrutor).
+- **Gerenciamento de Alunos:** CRUD de alunos com dados pessoais e cursos matriculados.
+- **Gerenciamento de Professores:** Cadastro de professores com informações e cursos ministrados.
+- **Agendamento de Aulas:** Agendamento de aulas com data, hora e tema.
+- **Matrícula de Alunos:** Função de matrícula e cancelamento de alunos nos cursos e listagem de matriculados.
+
+## Funcionalidades Extras
+- **Deleção Lógica(Soft Delete)** : Mantém histórico de alunos, cursos e matrículas após a exclusão.
+- **Exclusão em Cascata para Relacionamentos:** Propaga exclusões para manter consistência nos dados relacionados.
+- **Testes Automatizados:** Testes de validação das funcionalidades principais do sistema. 
+- **Logs para Monitoramento de Perfomance nos Testes Automatizados:**:Monitoramento do tempo de execução e otimização.
+- **initial_data.json para Popular o Banco de Dados**:  Dados iniciais para testes e verificação rápida das funcionalidades.
+  
 ## Instalação:
 ### Clone o Repositório:
 ```
